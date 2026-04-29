@@ -4,13 +4,13 @@ import * as vscode from "vscode";
 suite("nestjs-crud-generator extension", () => {
   test("extension is registered", function () {
     this.timeout(10000);
-    const ext = vscode.extensions.getExtension("sohail.nestjs-crud-generator");
-    assert.ok(ext, "Extension sohail.nestjs-crud-generator should be available");
+    const ext = vscode.extensions.getExtension("sohailnajar.nestjs-crud-generator");
+    assert.ok(ext, "Extension sohailnajar.nestjs-crud-generator should be available");
   });
 
   test("extension activates", async function () {
     this.timeout(20000);
-    const ext = vscode.extensions.getExtension("sohail.nestjs-crud-generator");
+    const ext = vscode.extensions.getExtension("sohailnajar.nestjs-crud-generator");
     assert.ok(ext);
     if (ext) {
       await ext.activate();
@@ -19,7 +19,7 @@ suite("nestjs-crud-generator extension", () => {
 
   test("core commands are available after activation", async function () {
     this.timeout(20000);
-    const ext = vscode.extensions.getExtension("sohail.nestjs-crud-generator");
+    const ext = vscode.extensions.getExtension("sohailnajar.nestjs-crud-generator");
     assert.ok(ext);
     await ext?.activate();
     const all = await vscode.commands.getCommands();

@@ -31,7 +31,7 @@ class Mem implements vscode.Memento {
 suite("wizard flow (Quick + generate to temp)", () => {
   test("Quick path with preset yields SQL options from memento", async function () {
     this.timeout(60000);
-    const ext = vscode.extensions.getExtension("sohail.nestjs-crud-generator");
+    const ext = vscode.extensions.getExtension("sohailnajar.nestjs-crud-generator");
     assert.ok(ext);
     await ext?.activate();
 
@@ -84,7 +84,7 @@ suite("wizard flow (Quick + generate to temp)", () => {
 
   test("runGenerateCrud writes four files when previews are auto-confirmed", async function () {
     this.timeout(120000);
-    const ext = vscode.extensions.getExtension("sohail.nestjs-crud-generator");
+    const ext = vscode.extensions.getExtension("sohailnajar.nestjs-crud-generator");
     assert.ok(ext);
     await ext?.activate();
 
