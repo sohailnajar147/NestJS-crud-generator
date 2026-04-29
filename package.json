@@ -2,7 +2,7 @@
   "name": "nestjs-crud-generator",
   "displayName": "NestJS CRUD Generator",
   "description": "TypeORM entity to NestJS DTOs, service, and controller with diff-before-write; optional @nestjs/swagger and AST module registration (Mongo or SQL).",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publisher": "sohailnajar",
   "license": "MIT",
   "homepage": "https://github.com/sohailnajar147/nestjs-crud-generator#readme",

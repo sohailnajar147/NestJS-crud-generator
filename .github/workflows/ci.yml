@@ -7,12 +7,16 @@ on:
       - README.md
       - CHANGELOG.md
       - LICENSE
+      - "images/**"
+      - "media/**"
   pull_request:
     branches: [main, master]
     paths-ignore:
       - README.md
       - CHANGELOG.md
       - LICENSE
+      - "images/**"
+      - "media/**"
 
 jobs:
   build:

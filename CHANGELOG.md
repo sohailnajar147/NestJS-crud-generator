@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.3.1] — 2026-04-29
+
+### Changed
+
+- Updated extension icon (`images/icon.png`).
+
+[0.3.1]: https://github.com/sohailnajar147/nestjs-crud-generator
+
 ## [0.3.0] — 2026-04-27
 
 First public release on the Visual Studio Marketplace.
