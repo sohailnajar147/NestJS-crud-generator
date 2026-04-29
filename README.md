@@ -71,6 +71,8 @@ Settings are grouped under **`nestjsCrud.*`** in VS Code (search “nestjs crud�
 
 ## 📌 Why this extension?
 
+I built this tool during my learning phase to streamline CRUD generation and reduce repetitive work, helping me stay focused on mastering NestJS concepts rather than relying entirely on code generation tools.
+
 - **Safer than blind CLI runs** — you see diffs before files change.
 - **Preview-first** — fewer surprises in real codebases.
 - **Built for day-to-day Nest apps** — not a heavyweight “scaffold everything” platform.
