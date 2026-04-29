@@ -1,0 +1,15 @@
+{{#if classValidatorImports.length}}
+import { {{#each classValidatorImports}}{{#unless @first}}, {{/unless}}{{this}}{{/each}} } from 'class-validator';
+{{/if}}
+{{#if addSwagger}}import { ApiProperty } from '@nestjs/swagger';
+{{/if}}
+
+export class Create{{entityName}}Dto {
+{{#each createDtoProperties}}
+{{#each decoratorLines}}
+{{this}}
+{{/each}}
+  {{name}}: {{type}};
+
+{{/each}}
+}

@@ -1,0 +1,280 @@
+{
+  "name": "nestjs-crud-generator",
+  "displayName": "NestJS CRUD Generator",
+  "description": "TypeORM entity to NestJS DTOs, service, and controller with diff-before-write; optional @nestjs/swagger and AST module registration (Mongo or SQL).",
+  "version": "0.3.0",
+  "publisher": "sohail",
+  "license": "MIT",
+  "homepage": "https://github.com/sohailnajar147/nestjs-crud-generator#readme",
+  "bugs": {
+    "url": "https://github.com/sohailnajar147/nestjs-crud-generator/issues"
+  },
+  "keywords": [
+    "nestjs",
+    "crud",
+    "codegen",
+    "typeorm",
+    "rest",
+    "api",
+    "generator",
+    "entity",
+    "dto",
+    "scaffold",
+    "mongodb",
+    "postgresql",
+    "mysql",
+    "mariadb",
+    "sqlite"
+  ],
+  "galleryBanner": {
+    "color": "#0a1628",
+    "theme": "dark"
+  },
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sohailnajar147/nestjs-crud-generator"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onCommand:nestjs-crud-generator.generateCRUD",
+    "onCommand:nestjs-crud-generator.generateCRUDQuick",
+    "onCommand:nestjs-crud-generator.undoLastCrudGeneration",
+    "onCommand:nestjs-crud-generator.openReadme",
+    "onCommand:nestjs-crud-generator.openWalkthrough",
+    "onView:nestjsCrudGenerator.help",
+    "onCommand:nestjs-crud-generator.openOutputLog",
+    "workspaceContains:**/nest-cli.json",
+    "workspaceContains:**/node_modules/@nestjs/core/package.json"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "nestjs-crud-generator.generateCRUD",
+        "title": "Generate CRUD from entity",
+        "category": "NestJS CRUD",
+        "icon": "$(layers)"
+      },
+      {
+        "command": "nestjs-crud-generator.generateCRUDQuick",
+        "title": "Generate CRUD (quick, saved or last custom options)",
+        "category": "NestJS CRUD"
+      },
+      {
+        "command": "nestjs-crud-generator.openOutputLog",
+        "title": "Show “NestJS CRUD Generator” output log",
+        "category": "NestJS CRUD"
+      },
+      {
+        "command": "nestjs-crud-generator.undoLastCrudGeneration",
+        "title": "Undo last CRUD generation",
+        "category": "NestJS CRUD"
+      },
+      {
+        "command": "nestjs-crud-generator.openReadme",
+        "title": "Open extension README on GitHub",
+        "category": "NestJS CRUD"
+      },
+      {
+        "command": "nestjs-crud-generator.openWalkthrough",
+        "title": "Open “Getting started” walkthrough",
+        "category": "NestJS CRUD"
+      },
+      {
+        "command": "nestjs-crud-generator.openIssues",
+        "title": "Open extension issue tracker (GitHub)",
+        "category": "NestJS CRUD"
+      },
+      {
+        "command": "nestjs-crud-generator.openGeneratedExamples",
+        "title": "Open or browse generated code examples",
+        "category": "NestJS CRUD"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "nestjsCrudGeneratorHelp",
+          "title": "NestJS CRUD",
+          "icon": "images/activitybar.svg"
+        }
+      ]
+    },
+    "views": {
+      "nestjsCrudGeneratorHelp": [
+        {
+          "id": "nestjsCrudGenerator.help",
+          "name": "NestJS CRUD Generator"
+        }
+      ]
+    },
+    "walkthroughs": [
+      {
+        "id": "crud-welcome",
+        "title": "NestJS CRUD Generator",
+        "description": "Scaffold service, controller, and DTOs from a TypeORM entity with a guided options dialog and optional undo.",
+        "steps": [
+          {
+            "id": "layout",
+            "title": "Layout and how to start",
+            "description": "1. In your Nest app, use a feature folder: `my-feature.module.ts`, `entities/*.entity.ts` next to it.\n2. Open a **`.ts` entity** in the editor (not `.tsx` — entities are TypeScript only).\n3. Use **CodeLens** on the `@Entity` line, **Ctrl+.** / the **lightbulb** (Quick Fix) anywhere in the file, **Ctrl+Shift+P** → **Generate CRUD from entity**, the **editor title** action, or the context menu.\n4. A **step-by-step options** flow appears (data source, routes, Swagger, etc.).\n5. **Undo last CRUD generation** reverts the last run once (files + module).\n\n[Open this walkthrough again](command:nestjs-crud-generator.openWalkthrough) · [README](command:nestjs-crud-generator.openReadme) · [Generate](command:nestjs-crud-generator.generateCRUD) · [Quick generate](command:nestjs-crud-generator.generateCRUDQuick) · [Output log](command:nestjs-crud-generator.openOutputLog)"
+          },
+          {
+            "id": "options",
+            "title": "Skip the wizard (optional)",
+            "description": "To use only saved settings with no dialog, set `nestjsCrud.showOptionsWizard` to **false** in User or Workspace settings. Use **Generate CRUD (quick, saved or last custom options)** to skip the wizard but apply your last custom run or workspace defaults.\n[Open settings.json](command:workbench.action.openSettingsJson)"
+          }
+        ]
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "nestjs-crud-generator.generateCRUD",
+          "when": "editorLangId == typescript",
+          "group": "navigation@0"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "nestjs-crud-generator.generateCRUD",
+          "when": "resourceLangId == typescript",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "nestjs-crud-generator.generateCRUD",
+          "when": "resourceLangId == typescript",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "NestJS CRUD Generator",
+      "properties": {
+        "nestjsCrud.addSwagger": {
+          "type": "boolean",
+          "default": true,
+          "description": "Add Swagger/OpenAPI decorators to generated DTOs and controllers."
+        },
+        "nestjsCrud.showOptionsWizard": {
+          "type": "boolean",
+          "default": true,
+          "description": "When true, the Generate command shows a step-by-step options dialog before writing files. When false, uses only the other nestjsCrud.* settings (no dialog)."
+        },
+        "nestjsCrud.autoRegisterModule": {
+          "type": "boolean",
+          "default": true,
+          "description": "Register generated controller, service, and TypeOrmModule.forFeature in the nearest *.module.ts (AST-based)."
+        },
+        "nestjsCrud.routePrefix": {
+          "type": "string",
+          "default": "",
+          "description": "Prefix for the controller path (e.g. 'api/v1'). Leave empty for no prefix; resource segment comes from the entity table/collection name."
+        },
+        "nestjsCrud.useIsEmailForEmailFields": {
+          "type": "boolean",
+          "default": true,
+          "description": "For string properties whose name contains \"email\" (case-insensitive), use @IsEmail() instead of @IsString()."
+        },
+        "nestjsCrud.useClassValidatorDecorators": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true, generated Create DTOs import class-validator (@IsString, @IsNotEmpty, …). Requires class-validator (and class-transformer with ValidationPipe) in the project. When false, only typed properties and optional Swagger decorators are emitted — no class-validator import."
+        },
+        "nestjsCrud.dataSource": {
+          "type": "string",
+          "enum": ["mongodb", "sql"],
+          "default": "mongodb",
+          "description": "mongodb: MongoRepository + string ids. sql: TypeORM Repository for PostgreSQL, MySQL/MariaDB, SQLite, and other SQL drivers (same generated code)."
+        },
+        "nestjsCrud.sqlIdType": {
+          "type": "string",
+          "enum": ["number", "string", "auto"],
+          "default": "auto",
+          "description": "Primary key type for generated SQL service/controller. auto infers from the entity when possible. Ignored when dataSource is mongodb."
+        },
+        "nestjsCrud.primaryKeyField": {
+          "type": "string",
+          "default": "id",
+          "description": "Primary key property name in the entity (used in SQL where clauses)."
+        },
+        "nestjsCrud.routeStrategy": {
+          "type": "string",
+          "enum": ["rest", "legacy"],
+          "default": "rest",
+          "description": "rest: standard REST paths (e.g. POST /, GET /, GET :id, PATCH/PUT :id, DELETE :id). legacy: previous style (AddX, showXs, showX/:id, ...)."
+        },
+        "nestjsCrud.restUpdateMethod": {
+          "type": "string",
+          "enum": ["put", "patch"],
+          "default": "patch",
+          "description": "HTTP method for update when routeStrategy is rest. Ignored for legacy."
+        },
+        "nestjsCrud.previewMode": {
+          "type": "string",
+          "enum": ["perFile", "batch", "off"],
+          "default": "perFile",
+          "description": "perFile: open a diff and confirm for each file (safest). batch: one confirmation for all files, no per-file diffs. off: one confirmation, no diffs (fastest; still overwrites with care)."
+        },
+        "nestjsCrud.trustEntityFileWithoutEntitySuffix": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true, do not prompt when the file name is not `*.entity.ts` but the file has `@Entity` (useful for custom naming conventions)."
+        },
+        "nestjsCrud.generateServiceSpec": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true (built-in codegen only), also emit `*.service.spec.ts` with a Jest + mocked repository scaffold. Ignored when `nestjsCrud.templatesPath` is set."
+        },
+        "nestjsCrud.includeInheritedEntityProperties": {
+          "type": "boolean",
+          "default": true,
+          "description": "When true, DTOs include same-file base class property declarations (TypeScript AST inheritance). Cross-file base classes are not followed."
+        },
+        "nestjsCrud.templatesPath": {
+          "type": ["string", "null"],
+          "default": null,
+          "description": "Folder with Handlebars files `create-dto.hbs`, `update-dto.hbs`, `service.hbs`, and `controller.hbs` (and optional partials `_*.hbs`). When null or empty, the extension uses its built-in generator. When set, paths can be absolute or relative to the workspace root for the file’s folder."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test:generate-fixtures": "node ./out/test/golden/writeFixtures.js",
+    "test:generated-lint": "npm run test:generate-fixtures && eslint \"src/test/fixtures/generated/**/*.ts\"",
+    "pretest": "npm run compile && npm run test:generated-lint && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@types/pluralize": "^0.0.33",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "@vscode/test-electron": "^2.3.2",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "pluralize": "^8.0.0",
+    "ts-morph": "^28.0.0"
+  }
+}

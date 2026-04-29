@@ -1,0 +1,85 @@
+{{#if isRest}}import { {{restCommonImports}} } from '@nestjs/common';
+import { {{entityName}}Service } from './{{entityFile}}.service';
+import { Create{{entityName}}Dto } from './dto/create-{{entityFile}}.dto';
+import { Update{{entityName}}Dto } from './dto/update-{{entityFile}}.dto';
+{{#if addSwagger}}
+{{{swaggerImports}}}
+
+{{{swaggerClass}}}
+{{else}}
+
+{{/if}}@Controller('{{finalRoute}}')
+export class {{entityName}}Controller {
+  constructor(private readonly {{entity}}Service: {{entityName}}Service) {}
+
+  @Post()
+{{{rest.swCreate}}}  create(@Body() create{{entityName}}Dto: Create{{entityName}}Dto) {
+    return this.{{entity}}Service.create(create{{entityName}}Dto);
+  }
+
+  @Get()
+{{{rest.swFindAll}}}  findAll() {
+    return this.{{entity}}Service.findAll();
+  }
+
+  @Get(':id')
+{{{rest.swFindOne}}}  findOne({{{idParamForRest}}}) {
+    return this.{{entity}}Service.findOne(id);
+  }
+
+  {{{updateDecorator}}}
+{{{rest.swUpdate}}}  update(
+    {{{idParamForRest}}},
+    @Body() update{{entityName}}Dto: Update{{entityName}}Dto,
+  ) {
+    return this.{{entity}}Service.update(id, update{{entityName}}Dto);
+  }
+
+  @Delete(':id')
+{{{rest.swDelete}}}  remove({{{idParamForRest}}}) {
+    return this.{{entity}}Service.remove(id);
+  }
+}
+{{else}}import { {{legacyCommonImports}} } from '@nestjs/common';
+import { {{entityName}}Service } from './{{entityFile}}.service';
+import { Create{{entityName}}Dto } from './dto/create-{{entityFile}}.dto';
+import { Update{{entityName}}Dto } from './dto/update-{{entityFile}}.dto';
+{{#if addSwagger}}
+{{{swaggerImports}}}
+
+{{{swaggerClass}}}
+{{else}}
+
+{{/if}}@Controller('{{finalRoute}}')
+export class {{entityName}}Controller {
+  constructor(private readonly {{entity}}Service: {{entityName}}Service) {}
+
+  @Post('Add{{entityName}}')
+{{{legacy.swCreate}}}  create(@Body() create{{entityName}}Dto: Create{{entityName}}Dto) {
+    return this.{{entity}}Service.create(create{{entityName}}Dto);
+  }
+
+  @Get('show{{entitiesPascal}}')
+{{{legacy.swFindAll}}}  findAll() {
+    return this.{{entity}}Service.findAll();
+  }
+
+  @Get('show{{entityName}}/:id')
+{{{legacy.swFindOne}}}  findOne({{{idParamForLegacy}}}) {
+    return this.{{entity}}Service.findOne(id);
+  }
+
+  @Put('Update{{entityName}}/:id')
+{{{legacy.swUpdate}}}  update(
+    {{{idParamForLegacy}}},
+    @Body() update{{entityName}}Dto: Update{{entityName}}Dto,
+  ) {
+    return this.{{entity}}Service.update(id, update{{entityName}}Dto);
+  }
+
+  @Delete('Delete{{entityName}}/:id')
+{{{legacy.swDelete}}}  remove({{{idParamForLegacy}}}) {
+    return this.{{entity}}Service.remove(id);
+  }
+}
+{{/if}}

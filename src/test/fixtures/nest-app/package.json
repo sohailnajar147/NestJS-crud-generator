@@ -1,0 +1,7 @@
+{
+  "name": "e2e-nest",
+  "private": true,
+  "dependencies": {
+    "@nestjs/core": "10.0.0"
+  }
+}
