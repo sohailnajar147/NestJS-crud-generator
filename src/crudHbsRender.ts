@@ -9,6 +9,10 @@ const REQUIRED_OUTPUTS = [
   "controller.hbs",
 ] as const;
 
+function readTemplateUtf8(filePath: string): string {
+  return fs.readFileSync(filePath, "utf8").replace(/\r\n/g, "\n");
+}
+
 /**
  * Load all `*.hbs` from `templateRoot`, register `_*.hbs` as partials, and render the four required templates.
  */
@@ -45,13 +49,13 @@ export function renderCrudFromHandlebarsTemplatesSync(
   for (const f of hbsFiles) {
     if (f.startsWith("_")) {
       const partialName = f.replace(/\.hbs$/, "");
-      const src = fs.readFileSync(path.join(templateRoot, f), "utf8");
+      const src = readTemplateUtf8(path.join(templateRoot, f));
       hbs.registerPartial(partialName, src);
     }
   }
 
   function compileAndRun(name: string): string {
-    const src = fs.readFileSync(path.join(templateRoot, name), "utf8");
+    const src = readTemplateUtf8(path.join(templateRoot, name));
     const t = hbs.compile(src, { strict: false });
     return t(view) as string;
   }

@@ -48,11 +48,13 @@ suite("module resolution (3 *.module.ts)", () => {
     const c = path.join(root, "c", "c.module.ts");
     const list = [a, b, c].map((p) => vscode.Uri.file(p));
     const m = new Mem();
+    const pickedUri = list[2];
+    assert.ok(pickedUri);
     // Must match vscode.Uri.fsPath (drive letter casing) for lookup in
     // getDefaultModuleUriForEntity.
     await m.update(
       LAST_SELECTED_MODULE_MEMENTO_KEY,
-      path.normalize(list[2]!.fsPath),
+      path.normalize(pickedUri.fsPath),
     );
     const d = getDefaultModuleUriForEntity(
       list,
@@ -61,7 +63,7 @@ suite("module resolution (3 *.module.ts)", () => {
     );
     assert.strictEqual(
       path.normalize(d.fsPath).toLowerCase(),
-      path.normalize(list[2]!.fsPath).toLowerCase(),
+      path.normalize(pickedUri.fsPath).toLowerCase(),
     );
   });
 
