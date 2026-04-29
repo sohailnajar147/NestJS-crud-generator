@@ -6,3 +6,7 @@ src/**
 yarn.lock
 package-lock.json
 webpack.config.js
+tsconfig.json
+out/test/**
+**/*.map
+.github/**
