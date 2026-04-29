@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.3.2] — 2026-04-29
+
+### Fixed
+
+- Listed **`typescript`** as a runtime **dependency** so the published VSIX includes it. The extension imports `typescript` for AST work (`ts-morph`); it was previously only under `devDependencies`, so Marketplace installs failed at activation while local debug worked.
+
+[0.3.2]: https://github.com/sohailnajar147/nestjs-crud-generator/compare/v0.3.1...v0.3.2
+
 ## [0.3.1] — 2026-04-29
 
 ### Changed
